@@ -1,6 +1,6 @@
 <?php
 echo '2019 Masters';
-echo "\n";
+echo "</br>";
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -37,8 +37,8 @@ if ($err) {
     continue;
   }
   // error_log(print_r($pga, true));
-  echo 'Updated: '.$pga['Updated']."\n";
-  echo "\n";
+  echo 'Updated: '.$pga['Updated']."</br>";
+  echo "</br>";
   $ryan_results = array('RYAN');
   $cody_results = array('CODY');
   $tony_results = array('TONY');
@@ -109,9 +109,9 @@ if ($err) {
 
 function printResults($results) {
   foreach($results as $line) {
-    echo $line."\n";
+    echo $line."</br>";
   }
-  echo "\n";
+  echo "</br>";
 }
 
 ?>
