@@ -44,6 +44,12 @@ if ($err) {
   $tony_results = array('TONY');
   $drew_results = array('DREW');
 
+  //scores
+  $ryan_scores = array();
+  $cody_scores = array();
+  $tony_scores = array();
+  $drew_scores = array();
+
   foreach($pga['Players'] as $player) {
     // error_log($player['Name']);
 
@@ -57,6 +63,7 @@ if ($err) {
       case 'JUSTIN THOMAS':
         //ryan
         array_push($ryan_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($ryan_scores, $player['Total']);
         break;
       case 'DUSTIN JOHNSON':
       case 'BROOKS KOEPKA':
@@ -66,6 +73,7 @@ if ($err) {
       case 'PATRICK REED':
         //cody
         array_push($cody_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($cody_scores, $player['Total']);
         break;
 
       case 'TIGER WOODS':
@@ -76,6 +84,7 @@ if ($err) {
       case 'BRYSON DECHAMBEAU':
         //tony
         array_push($tony_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($tony_scores, $player['Total']);
         break;
 
       case 'RICKIE FOWLER':
@@ -86,6 +95,7 @@ if ($err) {
       case 'FRANCESCO MOLINARI':
         //drew
         array_push($drew_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($drew_scores, $player['Total']);
         break;
     }
   }
@@ -100,17 +110,20 @@ if ($err) {
   // echo var_dump($tony_results);
   // echo var_dump($drew_results);
 
-  printResults($ryan_results);
-  printResults($cody_results);
-  printResults($tony_results);
-  printResults($drew_results);
+  printResults($ryan_results, $ryan_scores);
+  printResults($cody_results, $cody_scores);
+  printResults($tony_results, $tony_scores);
+  printResults($drew_results, $drew_scores);
 
 }
 
-function printResults($results) {
+function printResults($results, $scores) {
   foreach($results as $line) {
     echo $line."</br>";
   }
+
+  $top = $scores[0] + $scores[1] + $scores[2];
+  echo 'Top 3 Lowest Total: '.$top;
   echo "</br>";
 }
 
