@@ -56,7 +56,7 @@ if ($err) {
       case 'PHIL MICKELSON':
       case 'JUSTIN THOMAS':
         //ryan
-        array_push($ryan_results, $player['Name'].' Thru '.$player['After'].' To Par: '.$player['Total']);
+        array_push($ryan_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
         break;
       case 'DUSTIN JOHNSON':
       case 'BROOKS KOEPKA':
@@ -65,7 +65,7 @@ if ($err) {
       case 'XANDER SCHAUFFELE':
       case 'PATRICK REED':
         //cody
-        array_push($cody_results, $player['Name'].' Thru '.$player['After'].' To Par: '.$player['Total']);
+        array_push($cody_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
         break;
 
       case 'TIGER WOODS':
@@ -75,7 +75,7 @@ if ($err) {
       case 'TONY FINAU':
       case 'BRYSON DECHAMBEAU':
         //tony
-        array_push($tony_results, $player['Name'].' Thru '.$player['After'].' To Par: '.$player['Total']);
+        array_push($tony_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
         break;
 
       case 'RICKIE FOWLER':
@@ -85,7 +85,7 @@ if ($err) {
       case 'SERGIO GARCIA':
       case 'FRANCESCO MOLINARI':
         //drew
-        array_push($drew_results, $player['Name'].' Thru '.$player['After'].' To Par: '.$player['Total']);
+        array_push($drew_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
         break;
     }
   }
