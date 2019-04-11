@@ -1,5 +1,5 @@
 <?php
-echo 'Start of the Sript';
+echo '2019 Masters';
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -36,10 +36,10 @@ if ($err) {
     continue;
   }
   // error_log(print_r($pga, true));
-  $ryan_results = array();
-  $cody_results = array();
-  $tony_results = array();
-  $drew_results = array();
+  $ryan_results = array('RYAN');
+  $cody_results = array('CODY');
+  $tony_results = array('TONY');
+  $drew_results = array('DREW');
 
   foreach($pga['Players'] as $player) {
     // error_log($player['Name']);
@@ -53,7 +53,7 @@ if ($err) {
       case 'PHIL MICKELSON':
       case 'JUSTIN THOMAS':
         //ryan
-        array_push($ryan_results, $player['Name'].': '.$player['Total']);
+        array_push($ryan_results, $player['Name'].' Thru '.$player['After'].' To Par: '.$player['Total']);
         break;
       case 'DUSTIN JOHNSON':
       case 'BROOKS KOEPKA':
@@ -62,7 +62,7 @@ if ($err) {
       case 'XANDER SCHAUFFELE':
       case 'PATRICK REED':
         //cody
-        array_push($cody_results, $player['Name'].': '.$player['Total']);
+        array_push($cody_results, $player['Name'].' Thru '.$player['After'].' To Par: '.$player['Total']);
         break;
 
       case 'TIGER WOODS':
@@ -72,7 +72,7 @@ if ($err) {
       case 'TONY FINAU':
       case 'BRYSON DECHAMBEAU':
         //tony
-        array_push($tony_results, $player['Name'].': '.$player['Total']);
+        array_push($tony_results, $player['Name'].' Thru '.$player['After'].' To Par: '.$player['Total']);
         break;
 
       case 'RICKIE FOWLER':
@@ -82,15 +82,20 @@ if ($err) {
       case 'SERGIO GARCIA':
       case 'FRANCESCO MOLINARI':
         //drew
-        array_push($drew_results, $player['Name'].': '.$player['Total']);
+        array_push($drew_results, $player['Name'].' Thru '.$player['After'].' To Par: '.$player['Total']);
         break;
     }
   }
 
-  error_log(print_r($ryan_results, true));
-  error_log(print_r($cody_results, true));
-  error_log(print_r($tony_results, true));
-  error_log(print_r($drew_results, true));
+  // error_log(print_r($ryan_results, true));
+  // error_log(print_r($cody_results, true));
+  // error_log(print_r($tony_results, true));
+  // error_log(print_r($drew_results, true));
+
+  print_r($ryan_results, true);
+  print_r($cody_results, true);
+  print_r($tony_results, true);
+  print_r($drew_results, true);
 
 
 }
