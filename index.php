@@ -1,5 +1,6 @@
 <?php
 echo '2019 Masters';
+echo "\n";
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -36,6 +37,8 @@ if ($err) {
     continue;
   }
   // error_log(print_r($pga, true));
+  echo 'Updated: '.$pga['Updated']."\n";
+  echo "\n";
   $ryan_results = array('RYAN');
   $cody_results = array('CODY');
   $tony_results = array('TONY');
@@ -92,12 +95,23 @@ if ($err) {
   // error_log(print_r($tony_results, true));
   // error_log(print_r($drew_results, true));
 
-  echo var_dump($ryan_results);
-  echo var_dump($cody_results);
-  echo var_dump($tony_results);
-  echo var_dump($drew_results);
+  // echo var_dump($ryan_results);
+  // echo var_dump($cody_results);
+  // echo var_dump($tony_results);
+  // echo var_dump($drew_results);
 
+  printResults($ryan_results);
+  printResults($cody_results);
+  printResults($tony_results);
+  printResults($drew_results);
 
+}
+
+function printResults($results) {
+  foreach($results as $line) {
+    echo $line."\n";
+  }
+  echo "\n";
 }
 
 ?>
