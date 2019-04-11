@@ -92,10 +92,10 @@ if ($err) {
   // error_log(print_r($tony_results, true));
   // error_log(print_r($drew_results, true));
 
-  echo print_r($ryan_results, true);
-  echo print_r($cody_results, true);
-  echo print_r($tony_results, true);
-  echo print_r($drew_results, true);
+  echo var_dump($ryan_results);
+  echo var_dump($cody_results);
+  echo var_dump($tony_results);
+  echo var_dump($drew_results);
 
 
 }
