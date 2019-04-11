@@ -1,5 +1,5 @@
 <?php
-
+echo 'Start of the Sript';
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -91,6 +91,8 @@ if ($err) {
   error_log(print_r($cody_results, true));
   error_log(print_r($tony_results, true));
   error_log(print_r($drew_results, true));
+
+
 }
 
 ?>
