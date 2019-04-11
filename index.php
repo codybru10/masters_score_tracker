@@ -125,6 +125,7 @@ function printResults($results, $scores) {
   $top = $scores[0] + $scores[1] + $scores[2];
   echo 'Top 3 Lowest Total: '.$top;
   echo "</br>";
+  echo "</br>";
 }
 
 ?>
