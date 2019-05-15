@@ -1,6 +1,4 @@
 <?php
-echo '2019 Masters';
-echo "</br>";
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -36,66 +34,95 @@ if ($err) {
     }
     continue;
   }
+
   // error_log(print_r($pga, true));
+  echo $pga['Tournament'];
+  echo "</br>";
   echo 'Updated: '.$pga['Updated']."</br>";
   echo "</br>";
   $ryan_results = array('RYAN');
   $cody_results = array('CODY');
   $tony_results = array('TONY');
   $drew_results = array('DREW');
+  $jeremy_results = array('JEREMY');
+  $matt_results = array('MATT');
 
   //scores
   $ryan_scores = array();
   $cody_scores = array();
   $tony_scores = array();
   $drew_scores = array();
+  $jeremy_scores = array();
+  $matt_scores = array();
 
   foreach($pga['Players'] as $player) {
     // error_log($player['Name']);
 
     switch (strtoupper($player['Name'])) {
-
-      case 'HIDEKI MATSUYAMA':
-      case 'HENRIK STENSON':
-      case 'MATT KUCHAR':
-      case 'RORY MCILROY':
-      case 'PHIL MICKELSON':
-      case 'JUSTIN THOMAS':
-        //ryan
-        array_push($ryan_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
-        array_push($ryan_scores, $player['Total']);
-        break;
       case 'DUSTIN JOHNSON':
-      case 'BROOKS KOEPKA':
-      case 'TOMMY FLEETWOOD':
-      case 'BUBBA WATSON':
-      case 'XANDER SCHAUFFELE':
       case 'PATRICK REED':
-        //cody
-        array_push($cody_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
-        array_push($cody_scores, $player['Total']);
+      case 'BRYSON DECHAMBEAU':
+      case 'BUBBA WATSON':
+      case 'PHIL MICKELSON':
+      case '':
+        //drew
+        array_push($drew_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($drew_scores, $player['Total']);
+        break;
+
+      case 'BROOKS KOEPKA':
+      case 'JUSTIN ROSE':
+      case 'TOMMY FLEETWOOD':
+      case 'WEBB SIMPSON':
+      case 'KEITH MITCHELL':
+      case '':
+        //jeremy
+        array_push($jeremy_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($jeremy_scores, $player['Total']);
         break;
 
       case 'TIGER WOODS':
-      case 'JON RAHM':
-      case 'JORDAN SPIETH':
-      case 'PAUL CASEY':
-      case 'TONY FINAU':
-      case 'BRYSON DECHAMBEAU':
+      case 'FRANCESCO MOLINARI':
+      case 'MATT KUCHAR':
+      case 'PATRICK CANTLAY':
+      case 'KEVIN KISNER':
+      case '':
         //tony
         array_push($tony_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
         array_push($tony_scores, $player['Total']);
         break;
 
       case 'RICKIE FOWLER':
-      case 'JUSTIN ROSE':
+      case 'JON RAHM':
       case 'ADAM SCOTT':
-      case 'JASON DAY':
+      case 'IAN POULTER':
+      case 'LOUIS OOSTHUIZEN':
+      case '':
+        //cody
+        array_push($cody_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($cody_scores, $player['Total']);
+        break;
+
+      case 'RORY MCILROY':
+      case 'TONY FINAU':
       case 'SERGIO GARCIA':
-      case 'FRANCESCO MOLINARI':
-        //drew
-        array_push($drew_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
-        array_push($drew_scores, $player['Total']);
+      case 'HIDEKI MATSUYAMA':
+      case 'KEEGAN BRADLEY':
+      case '':
+        //ryan
+        array_push($ryan_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($ryan_scores, $player['Total']);
+        break;
+
+      case 'JASON DAY':
+      case 'XANDER SCHAUFFELE':
+      case 'JORDAN SPIETH':
+      case 'GARY WOODLAND':
+      case '':
+      case '':
+        //matt
+        array_push($matt_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($matt_scores, $player['Total']);
         break;
     }
   }
@@ -110,10 +137,12 @@ if ($err) {
   // echo var_dump($tony_results);
   // echo var_dump($drew_results);
 
-  printResults($ryan_results, $ryan_scores);
-  printResults($cody_results, $cody_scores);
-  printResults($tony_results, $tony_scores);
   printResults($drew_results, $drew_scores);
+  printResults($jeremy_results, $drew_scores);
+  printResults($tony_results, $tony_scores);
+  printResults($cody_results, $cody_scores);
+  printResults($ryan_results, $ryan_scores);
+  printResults($matt_results, $drew_scores);
 
 }
 
