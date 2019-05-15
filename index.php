@@ -118,7 +118,7 @@ if ($err) {
       case 'XANDER SCHAUFFELE':
       case 'JORDAN SPIETH':
       case 'GARY WOODLAND':
-      case '':
+      case 'PAUL CASEY':
       case '':
         //matt
         array_push($matt_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
