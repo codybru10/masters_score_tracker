@@ -147,6 +147,11 @@ if ($err) {
   printResults($ryan_results, $ryan_scores);
   printResults($matt_results, $drew_scores);
 
+  echo '<br>LEADERBOARD<br>';
+  for ($i=0; $i < count($parsed_info); $i++) {
+    echo $competitors[$i]['score']['displayValue']." ".$competitors[$i]['athlete']['displayName']." thru ".$competitors[$i]['status']['thru']."<br>";
+  }
+
 }
 
 function printResults($results, $scores) {
