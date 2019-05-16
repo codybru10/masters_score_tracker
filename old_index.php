@@ -1,9 +1,8 @@
 <?php
-
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "http://site.api.espn.com/apis/site/v2/sports/golf/leaderboard",
+  CURLOPT_URL => "https://golf.jacoduplessis.co.za/?format=json",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -12,15 +11,8 @@ curl_setopt_array($curl, array(
   CURLOPT_CUSTOMREQUEST => "GET",
   CURLOPT_POSTFIELDS => "",
   CURLOPT_HTTPHEADER => array(
-    "Accept: application/json",
-    "Cache-Control: no-cache",
-    "Connection: keep-alive",
-    "Content-Type: application/json",
-    "Host: site.api.espn.com",
-    "User-Agent: PostmanRuntime/7.11.0",
-    "accept-encoding: gzip, deflate",
-    "cache-control: no-cache",
-    "cookie: SWID=5585BF87-D6BE-4E7F-CE7B-073F0CE0ADDE"
+    "Postman-Token: 4c0ee4cd-f47d-4768-bdf8-d8a578d1cf53",
+    "cache-control: no-cache"
   ),
 ));
 
@@ -33,27 +25,21 @@ if ($err) {
   echo "cURL Error #:" . $err;
 } else {
   $data = json_decode($response, true);
-  echo $data['events'][0]['name'].'<br><br>';
-  $competitors = $data['events'][0]['competitions'][0]['competitors'];
-  // echo var_dump($competitors[0]['status']['thru']);
-  $parsed_info = array();
-  for ($i=0; $i < count($competitors); $i++) {
-    // code...
-    $name = $competitors[$i]['athlete']['displayName'];
-    $thru = $competitors[$i]['status']['thru'];
-    $score = $competitors[$i]['score']['displayValue'];
-    $score = ($score == "E" ? 0 : $score);
+  // $players = $data['Leaderboards'][0]['Players'];
 
-    $player_info = array(
-      "score" => $score,
-      "name" => $name,
-      "thru" => $thru
-    );
-
-    array_push($parsed_info, $player_info);
-
+  foreach($data['Leaderboards'] as $tournament) {
+    if ($tournament['Tour'] == 'PGA Tour') {
+      $pga = $tournament;
+      break;
+    }
+    continue;
   }
 
+  // error_log(print_r($pga, true));
+  echo $pga['Tournament'];
+  echo "</br>";
+  echo 'Updated: '.$pga['Updated']."</br>";
+  echo "</br>";
   $ryan_results = array('RYAN');
   $cody_results = array('CODY');
   $tony_results = array('TONY');
@@ -69,9 +55,10 @@ if ($err) {
   $jeremy_scores = array();
   $matt_scores = array();
 
-  for ($i=0; $i < count($parsed_info); $i++) {
-    // echo var_dump($parsed_info[$i]['name']).'<br>';
-    switch (strtoupper($parsed_info[$i]['name'])) {
+  foreach($pga['Players'] as $player) {
+    // error_log($player['Name']);
+
+    switch (strtoupper($player['Name'])) {
       case 'DUSTIN JOHNSON':
       case 'PATRICK REED':
       case 'BRYSON DECHAMBEAU':
@@ -79,8 +66,8 @@ if ($err) {
       case 'PHIL MICKELSON':
       case '':
         //drew
-        array_push($drew_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($drew_scores, $parsed_info[$i]['score']);
+        array_push($drew_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($drew_scores, $player['Total']);
         break;
 
       case 'BROOKS KOEPKA':
@@ -90,8 +77,8 @@ if ($err) {
       case 'KEITH MITCHELL':
       case '':
         //jeremy
-        array_push($jeremy_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($jeremy_scores, $player['score']);
+        array_push($jeremy_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($jeremy_scores, $player['Total']);
         break;
 
       case 'TIGER WOODS':
@@ -101,8 +88,8 @@ if ($err) {
       case 'KEVIN KISNER':
       case '':
         //tony
-        array_push($tony_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($tony_scores, $player['score']);
+        array_push($tony_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($tony_scores, $player['Total']);
         break;
 
       case 'RICKIE FOWLER':
@@ -112,8 +99,8 @@ if ($err) {
       case 'LOUIS OOSTHUIZEN':
       case '':
         //cody
-        array_push($cody_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($cody_scores, $player['score']);
+        array_push($cody_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($cody_scores, $player['Total']);
         break;
 
       case 'RORY MCILROY':
@@ -123,8 +110,8 @@ if ($err) {
       case 'KEEGAN BRADLEY':
       case '':
         //ryan
-        array_push($ryan_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($ryan_scores, $player['score']);
+        array_push($ryan_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($ryan_scores, $player['Total']);
         break;
 
       case 'JASON DAY':
@@ -134,11 +121,21 @@ if ($err) {
       case 'PAUL CASEY':
       case '':
         //matt
-        array_push($matt_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($matt_scores, $player['score']);
+        array_push($matt_results, $player['Total'].' '.$player['Name'].' Thru '.$player['After']);
+        array_push($matt_scores, $player['Total']);
         break;
     }
   }
+
+  // error_log(print_r($ryan_results, true));
+  // error_log(print_r($cody_results, true));
+  // error_log(print_r($tony_results, true));
+  // error_log(print_r($drew_results, true));
+
+  // echo var_dump($ryan_results);
+  // echo var_dump($cody_results);
+  // echo var_dump($tony_results);
+  // echo var_dump($drew_results);
 
   printResults($drew_results, $drew_scores);
   printResults($jeremy_results, $drew_scores);
@@ -160,3 +157,4 @@ function printResults($results, $scores) {
   echo "</br>";
 }
 
+?>
