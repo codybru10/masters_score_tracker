@@ -41,7 +41,7 @@ if ($err) {
     // code...
     $name = $competitors[$i]['athlete']['displayName'];
     $thru = $competitors[$i]['status']['thru'];
-    $score = $competitors[$i]['score']['displayValue'];
+    $score = $competitors[$i]['statistics'][0]['value'];
     $score = ($score == "E" ? 0 : $score);
 
     $player_info = array(
@@ -149,7 +149,7 @@ if ($err) {
 
   echo '<br>LEADERBOARD<br>';
   for ($i=0; $i < count($parsed_info); $i++) {
-    echo $competitors[$i]['score']['displayValue']." ".$competitors[$i]['athlete']['displayName']." thru ".$competitors[$i]['status']['thru']."<br>";
+    echo $competitors[$i]['statistics'][0]['value']." ".$competitors[$i]['athlete']['displayName']." thru ".$competitors[$i]['status']['thru']."<br>";
   }
 
 }
