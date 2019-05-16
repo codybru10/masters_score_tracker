@@ -147,7 +147,7 @@ if ($err) {
   printResults($tony_results, $tony_scores);
   printResults($cody_results, $cody_scores);
   printResults($ryan_results, $ryan_scores);
-  printResults($matt_results, $drew_scores);
+  printResults($matt_results, $matt_scores);
 
   echo '<br>LEADERBOARD<br>';
   for ($i=0; $i < count($parsed_info); $i++) {
@@ -168,4 +168,3 @@ function printResults($results, $scores) {
   echo "</br>";
   echo "</br>";
 }
-
