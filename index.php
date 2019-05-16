@@ -42,7 +42,7 @@ if ($err) {
     $name = $competitors[$i]['athlete']['displayName'];
     $thru = $competitors[$i]['status']['thru'];
     $score = $competitors[$i]['statistics'][0]['value'];
-    $score = ($score == "E" ? 0 : $score);
+    // $score = ($score == "E" ? 0 : $score);
 
     $player_info = array(
       "score" => $score,
@@ -53,6 +53,8 @@ if ($err) {
     array_push($parsed_info, $player_info);
 
   }
+
+  // echo var_dump($parsed_info).'<br>';
 
   $ryan_results = array('RYAN');
   $cody_results = array('CODY');
@@ -91,7 +93,7 @@ if ($err) {
       case '':
         //jeremy
         array_push($jeremy_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($jeremy_scores, $player['score']);
+        array_push($jeremy_scores, $parsed_info[$i]['score']);
         break;
 
       case 'TIGER WOODS':
@@ -102,7 +104,7 @@ if ($err) {
       case '':
         //tony
         array_push($tony_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($tony_scores, $player['score']);
+        array_push($tony_scores, $parsed_info[$i]['score']);
         break;
 
       case 'RICKIE FOWLER':
@@ -113,7 +115,7 @@ if ($err) {
       case '':
         //cody
         array_push($cody_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($cody_scores, $player['score']);
+        array_push($cody_scores, $parsed_info[$i]['score']);
         break;
 
       case 'RORY MCILROY':
@@ -124,7 +126,7 @@ if ($err) {
       case '':
         //ryan
         array_push($ryan_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($ryan_scores, $player['score']);
+        array_push($ryan_scores, $parsed_info[$i]['score']);
         break;
 
       case 'JASON DAY':
@@ -135,13 +137,13 @@ if ($err) {
       case '':
         //matt
         array_push($matt_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($matt_scores, $player['score']);
+        array_push($matt_scores, $parsed_info[$i]['score']);
         break;
     }
   }
 
   printResults($drew_results, $drew_scores);
-  printResults($jeremy_results, $drew_scores);
+  printResults($jeremy_results, $jeremy_scores);
   printResults($tony_results, $tony_scores);
   printResults($cody_results, $cody_scores);
   printResults($ryan_results, $ryan_scores);
@@ -158,6 +160,8 @@ function printResults($results, $scores) {
   foreach($results as $line) {
     echo $line."</br>";
   }
+
+  sort($scores);
 
   $top = $scores[0] + $scores[1] + $scores[2];
   echo 'Top 3 Lowest Total: '.$top;
