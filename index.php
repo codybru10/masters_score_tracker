@@ -30,12 +30,11 @@ $err = curl_error($curl);
 curl_close($curl);
 
 if ($err) {
-  echo "cURL Error #:" . $err;
+  echo $err;
 } else {
   $data = json_decode($response, true);
   $tourney = $data['events'][0]['name'].'<br><br>';
   $competitors = $data['events'][0]['competitions'][0]['competitors'];
-  // echo var_dump($competitors[0]['status']['thru']);
   $parsed_info = array();
   for ($i=0; $i < count($competitors); $i++) {
     // code...
@@ -54,7 +53,6 @@ if ($err) {
 
   }
 
-  // echo var_dump($parsed_info).'<br>';
 
   $ryan_results = array('RYAN');
   $cody_results = array('CODY');
@@ -72,7 +70,6 @@ if ($err) {
   $matt_scores = array();
 
   for ($i=0; $i < count($parsed_info); $i++) {
-    // echo var_dump($parsed_info[$i]['name']).'<br>';
     switch (strtoupper($parsed_info[$i]['name'])) {
       case 'RORY MCILROY':
       case 'JUSTIN ROSE':
@@ -143,10 +140,8 @@ if ($err) {
   $ryan_html = printResults($ryan_results, $ryan_scores);
   $matt_html = printResults($matt_results, $matt_scores);
 
-  echo '<br>LEADERBOARD<br>';
   $leaderboard = '';
   for ($i=0; $i < count($parsed_info); $i++) {
-    echo $competitors[$i]['statistics'][0]['value']." ".$competitors[$i]['athlete']['displayName']." thru ".$competitors[$i]['status']['thru']."<br>";
     $leaderboard .= '<tr>
         <td>'.$competitors[$i]['athlete']['displayName'].'</td>
         <td>'.$competitors[$i]['statistics'][0]['value'].'</td>
@@ -163,16 +158,12 @@ function printResults($results, $scores) {
   $html = '<div class="card col-sm"><div class="card-body">';
 
   foreach($results as $line) {
-    echo $line."</br>";
     $html .= '<p>'.$line.'</p>';
   }
 
   sort($scores);
 
   $top = $scores[0] + $scores[1] + $scores[2];
-  echo 'Top 3 Lowest Total: '.$top;
-  echo "</br>";
-  echo "</br>";
   $html .= '<h6>Top 3 Lowest Total: '.$top.'</h6>';
 
   $html .= '</div></div>';
