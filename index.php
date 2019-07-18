@@ -149,7 +149,7 @@ if ($err) {
       </tr>';
   }
 
-  include "index.html";
+  include "temp.html";
 
 }
 
