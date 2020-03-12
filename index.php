@@ -54,84 +54,84 @@ if ($err) {
   }
 
 
-  $ryan_results = array('RYAN');
-  $cody_results = array('CODY');
+  $haney_results = array('HANEY');
+  $sammy_results = array('SAMMY');
   $tony_results = array('TONY');
-  $drew_results = array('DREW');
-  $jeremy_results = array('JEREMY');
+  $johnny_results = array('JOHNNY');
+  $jordan_results = array('JORDAN');
   $matt_results = array('MATT');
 
   //scores
-  $ryan_scores = array();
-  $cody_scores = array();
+  $haney_scores = array();
+  $sammy_scores = array();
   $tony_scores = array();
-  $drew_scores = array();
-  $jeremy_scores = array();
+  $johnny_scores = array();
+  $jordan_scores = array();
   $matt_scores = array();
 
   for ($i=0; $i < count($parsed_info); $i++) {
     switch (strtoupper($parsed_info[$i]['name'])) {
-      case 'JON RAHM':
-      case 'PATRICK CANTLAY':
-      case 'HIDEKI MATSUYAMA':
-      case 'MATT KUCHAR':
-      case 'IAN POULTER':
-      case 'DANIEL BERGER':
-        //drew
-        array_push($drew_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($drew_scores, $parsed_info[$i]['score']);
-        break;
-
-      case 'DUSTIN JOHNSON':
-      case 'BROOKS KOEPKA':
+      case 'WEBB SIMPSON':
+      case 'GARY WOODLAND':
       case 'COLLIN MORIKAWA':
       case 'TONY FINAU':
-      case 'PAUL CASEY':
-      case 'LOUIS OOSTHUIZEN':
-        //jeremy
-        array_push($jeremy_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($jeremy_scores, $parsed_info[$i]['score']);
+      case 'DANIEL BERGER':
+      case 'BYEONG-HUN AN':
+        //johnny
+        array_push($johnny_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
+        array_push($johnny_scores, $parsed_info[$i]['score']);
         break;
 
       case 'BRYSON DECHAMBEAU':
-      case 'WEBB SIMPSON':
-      case 'ADAM SCOTT':
-      case 'TYRRELL HATTON':
+      case 'XANDER SCHAUFFELE':
+      case 'MARC LEISHMAN':
+      case 'JASON DAY':
       case 'MATTHEW FITZPATRICK':
+      case 'BRANDT SNEDEKER':
+        //jordan
+        array_push($jordan_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
+        array_push($jordan_scores, $parsed_info[$i]['score']);
+        break;
+
+      case 'JON RAHM':
+      case 'ADAM SCOTT':
+      case 'TOMMY FLEETWOOD':
+      case 'TYRRELL HATTON':
       case 'SCOTTIE SCHEFFLER':
+      case 'SERGIO GARCIA':
         //tony
         array_push($tony_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($tony_scores, $parsed_info[$i]['score']);
         break;
 
-      case 'XANDER SCHAUFFELE':
-      case 'RICKIE FOWLER':
-      case 'MARC LEISHMAN':
-      case 'ABRAHAM ANCER':
-      case 'SHANE LOWRY':
+      case 'JUSTIN THOMAS':
+      case 'BROOKS KOEPKA':
+      case 'SUNGJAE IM':
+      case 'MATT KUCHAR':
       case 'VIKTOR HOVLAND':
-        //cody
-        array_push($cody_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($cody_scores, $parsed_info[$i]['score']);
+      case 'PHIL MICKELSON':
+        //sammy
+        array_push($sammy_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
+        array_push($sammy_scores, $parsed_info[$i]['score']);
         break;
 
       case 'RORY MCILROY':
-      case 'PATRICK REED':
-      case 'SUNGJAE IM':
-      case 'BILLY HORSCHEL':
-      case 'SERGIO GARCIA':
-      case 'MAX HOMA':
-        //ryan
-        array_push($ryan_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($ryan_scores, $parsed_info[$i]['score']);
+      case 'HIDEKI MATSUYAMA':
+      case 'PATRICK CANTLAY':
+      case 'PAUL CASEY':
+      case 'JORDAN SPIETH':
+      case 'LOUIS OOSTHUIZEN':
+        //haney
+        array_push($haney_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
+        array_push($haney_scores, $parsed_info[$i]['score']);
         break;
 
-      case 'JUSTIN THOMAS':
-      case 'TOMMY FLEETWOOD':
-      case 'GARY WOODLAND':
+      case 'DUSTIN JOHNSON':
+      case 'RICKIE FOWLER':
+      case 'PATRICK REED':
       case 'JUSTIN ROSE':
-      case 'JORDAN SPIETH':
       case 'HARRIS ENGLISH':
+      case 'HENRIK STENSON':
         //matt
         array_push($matt_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($matt_scores, $parsed_info[$i]['score']);
@@ -139,11 +139,11 @@ if ($err) {
     }
   }
 
-  $drew_html = printResults($drew_results, $drew_scores);
-  $jeremy_html = printResults($jeremy_results, $jeremy_scores);
+  $johnny_html = printResults($johnny_results, $johnny_scores);
+  $jordan_html = printResults($jordan_results, $jordan_scores);
   $tony_html = printResults($tony_results, $tony_scores);
-  $cody_html = printResults($cody_results, $cody_scores);
-  $ryan_html = printResults($ryan_results, $ryan_scores);
+  $sammy_html = printResults($sammy_results, $sammy_scores);
+  $haney_html = printResults($haney_results, $haney_scores);
   $matt_html = printResults($matt_results, $matt_scores);
 
   $leaderboard = '';
