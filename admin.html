@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+    	$( document ).ready(function() {
+
+    		//player form
+			$('#myModal').on('shown.bs.modal', function () {
+				$('#myInput').trigger('focus')
+			})
+			// golfer form
+	    	$('#myModal').on('shown.bs.modal', function () {
+	  			$('#myInput').trigger('focus')
+			})
+
+	    	// get player id
+			$('.player-val').click(function() {
+				alert('woo');
+			});
+
+			$("#add-player").click(function(){
+				postData = {player: 'cody'};
+				$.ajax({
+					url: '<?=BASE_URL?>/admin.php?event=addPlayer',
+					type: 'post',
+					data: postData,
+					success: function (response) {
+						console.log(response);
+						$('#playerModal').modal('hide');
+						location.reload();
+					}
+				});
+			});
+
+		});
+
+
+
+
+    </script>
+
+    <title>Leaderboard</title>
+  </head>
+<body>
+	<h1 class="jumbotron">Admin Section</h1>
+	<div class="container">
+		<button type='button' class="btn-md btn-primary" data-toggle="modal" data-target="#playerModal">Add Player</button>
+		<br/><br>
+		<div class="row">
+			<div class="card col-sm">
+				<div class="card-body">
+					<h6>Player 1</h6>
+					<button type="button" class="btn-small player-val">Add Golfer</button>
+				</div>
+			</div>
+			<div class="card col-sm">
+				<div class="card-body">
+					<h6>Player 2</h6>
+					<button type="button" class="btn-small player-val" data-toggle="modal" data-target="#exampleModal">Add Golfer</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="card col-sm">
+				<div class="card-body">
+					<h6>Player 3</h6>
+					<button type="button" class="btn-small player-val" data-toggle="modal" data-target="#exampleModal">Add Golfer</button>
+				</div>
+			</div>
+			<div class="card col-sm">
+				<div class="card-body">
+					<h6>Player 4</h6>
+					<button type="button" class="btn-small player-val" data-toggle="modal" data-target="#exampleModal">Add Golfer</button>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="card col-sm">
+				<div class="card-body">
+					<h6>Player 5</h6>
+					<button type="button" class="btn-small player-val" data-toggle="modal" data-target="#exampleModal">Add Golfer</button>
+				</div>
+			</div>
+			<div class="card col-sm">
+				<div class="card-body">
+					<h6>Player 6</h6>
+					<button type="button" class="btn-small player-val" data-toggle="modal" data-target="#exampleModal">Add Golfer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Golfer Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Add Golfer</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <label>Golfer</label>
+	        <input type="text" id="golfer-name" name="golfer-name">
+	        <input type="hidden" name="player-id">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Submit</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<!-- Player Modal -->
+	<div class="modal fade" id="playerModal" tabindex="-1" role="dialog" aria-labelledby="playerModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="playerModalLabel">Add Player</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <label>Player</label>
+	        <input type="text" id="player-name" name="player-name">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary" id="add-player">Submit</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</body>
+</html>
