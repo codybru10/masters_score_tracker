@@ -40,6 +40,7 @@
 
 			$("#add-player").click(function(){
 				postData = {player: 'cody'};
+
 				$.ajax({
 					url: '<?=BASE_URL?>/admin.php?event=addPlayer',
 					type: 'post',
@@ -52,6 +53,18 @@
 				});
 			});
 
+			$("#reset-game").click(function(){
+				postData = '';
+				$.ajax({
+					url: '<?=BASE_URL?>/admin.php?event=resetGame',
+					type: 'post',
+					data: postData,
+					success: function (response) {
+						console.log(response);
+						location.reload();
+					}
+				});
+			})
 		});
 
 
@@ -65,7 +78,9 @@
 	<h1 class="jumbotron">Admin Section</h1>
 	<div class="container">
 		<button type='button' class="btn-md btn-primary" data-toggle="modal" data-target="#playerModal">Add Player</button>
+		<button type="button" id="reset-game" class="btn-small btn-danger">Reset Game</button>
 		<br/><br>
+		<?= $players ?>
 		<div class="row">
 			<div class="card col-sm">
 				<div class="card-body">
