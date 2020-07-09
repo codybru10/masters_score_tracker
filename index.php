@@ -60,6 +60,7 @@ if ($err) {
   $drew_results = array('DREW');
   $jeremy_results = array('JEREMY');
   $matt_results = array('MATT');
+  $elliott_results = array('ELLIOTT');
 
   //scores
   $ryan_scores = array();
@@ -68,67 +69,78 @@ if ($err) {
   $drew_scores = array();
   $jeremy_scores = array();
   $matt_scores = array();
+  $elliott_scores = array();
 
   for ($i=0; $i < count($parsed_info); $i++) {
     switch (strtoupper($parsed_info[$i]['name'])) {
-      case 'RORY MCILROY':
-      case 'JUSTIN ROSE':
-      case 'JUSTIN THOMAS':
-      case 'GARY WOODLAND':
-      case 'PHIL MICKELSON':
+      case 'BROOKS KOEPKA':
+      case 'PATRICK REED':
+      case 'COLLIN MORIKAWA':
+      case 'JOAQUIN NIEMANN':
+      case 'JASON DAY':
         //drew
         array_push($drew_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($drew_scores, $parsed_info[$i]['score']);
         break;
 
-      case 'JON RAHM':
-      case 'FRANCESCO MOLINARI':
-      case 'HENRIK STENSON':
-      case 'IAN POULTER':
-      case 'MATTHEW FITZPATRICK':
+      case 'HIDEKI MATSUYAMA':
+      case 'RICKIE FOWLER':
+      case 'MARC LEISHMAN':
+      case 'ADAM HADWIN':
+      case 'JOEL DAHMEN':
         //jeremy
         array_push($jeremy_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($jeremy_scores, $parsed_info[$i]['score']);
         break;
 
-      case 'TIGER WOODS':
-      case 'XANDER SCHAUFFELE':
-      case 'MATT WALLACE':
-      case 'WEBB SIMPSON':
-      case 'JIM FURYK':
+      case 'PATRICK CANTLAY':
+      case 'JORDAN SPIETH':
+      case 'MATTHEW WOLFF':
+      case 'CAMERON CHAMP':
+      case 'SCOTTIE SCHEFFLER':
         //tony
         array_push($tony_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($tony_scores, $parsed_info[$i]['score']);
         break;
 
-      case 'RICKIE FOWLER':
-      case 'TOMMY FLEETWOOD':
-      case 'JORDAN SPIETH':
-      case 'JASON DAY':
-      case 'LOUIS OOSTHUIZEN':
+      case 'JUSTIN THOMAS':
+      case 'GARY WOODLAND':
+      case 'SUNGJAE IM':
+      case 'IAN POULTER':
+      case 'SHANE LOWRY':
         //cody
         array_push($cody_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($cody_scores, $parsed_info[$i]['score']);
         break;
 
-      case 'DUSTIN JOHNSON':
-      case 'MATT KUCHAR':
-      case 'TONY FINAU':
-      case 'MARC LEISHMAN':
-      case 'PAUL CASEY':
+      case 'JON RAHM':
+      case 'VIKTOR HOVLAND':
+      case 'MATTHEW FITZPATRICK':
+      case 'BILLY HORSCHEL':
+      case 'STEVE STRICKER':
         //ryan
         array_push($ryan_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($ryan_scores, $parsed_info[$i]['score']);
         break;
 
-      case 'BROOKS KOEPKA':
-      case 'PATRICK CANTLAY':
-      case 'ADAM SCOTT':
-      case 'BRYSON DECHAMBEAU':
-      case 'SERGIO GARCIA':
+      case '':
+      case '':
+      case '':
+      case '':
+      case '':
         //matt
         array_push($matt_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($matt_scores, $parsed_info[$i]['score']);
+        break;
+
+      case 'XANDER SCHAUFFELE':
+      case 'JUSTIN ROSE':
+      case 'MATT KUCHAR':
+      case 'PHIL MICKELSON':
+      case 'COREY CONNERS':
+        //elliott
+        array_push($elliott_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
+        array_push($elloit_scores, $parsed_info[$i]['score']);
         break;
     }
   }
@@ -139,6 +151,7 @@ if ($err) {
   $cody_html = printResults($cody_results, $cody_scores);
   $ryan_html = printResults($ryan_results, $ryan_scores);
   $matt_html = printResults($matt_results, $matt_scores);
+  $elliott_html = printResults($elliott_results, $elliott_scores);
 
   $leaderboard = '';
   for ($i=0; $i < count($parsed_info); $i++) {
