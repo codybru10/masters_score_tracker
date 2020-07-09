@@ -140,7 +140,7 @@ if ($err) {
       case 'COREY CONNERS':
         //elliott
         array_push($elliott_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
-        array_push($elloit_scores, $parsed_info[$i]['score']);
+        array_push($elliott_scores, $parsed_info[$i]['score']);
         break;
     }
   }
