@@ -35,6 +35,7 @@ if ($err) {
   $data = json_decode($response, true);
   $tourney = $data['events'][0]['name'].'<br><br>';
   $competitors = $data['events'][0]['competitions'][0]['competitors'];
+  $projected_cut = $data['events'][0]['tournament']['cutScore'];
   $parsed_info = array();
   for ($i=0; $i < count($competitors); $i++) {
     // code...
@@ -52,7 +53,7 @@ if ($err) {
     array_push($parsed_info, $player_info);
 
   }
-
+//echo var_dump($competitors[1]);
 
   $ryan_results = array('RYAN');
   $cody_results = array('CODY');
