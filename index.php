@@ -73,50 +73,50 @@ if ($err) {
 
   for ($i=0; $i < count($parsed_info); $i++) {
     switch (strtoupper($parsed_info[$i]['name'])) {
-      case 'BROOKS KOEPKA':
-      case 'PATRICK REED':
-      case 'COLLIN MORIKAWA':
-      case 'JOAQUIN NIEMANN':
+      case 'VIKTOR HOVLAND':
+      case 'PATRICK CANTLAY':
+      case 'ABRAHAM ANCER':
       case 'JASON DAY':
+      case 'MATT KUCHAR':
         //drew
         array_push($drew_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($drew_scores, $parsed_info[$i]['score']);
         break;
 
-      case 'HIDEKI MATSUYAMA':
+      case 'JON RAHM':
+      case 'WEBB SIMPSON':
       case 'RICKIE FOWLER':
-      case 'MARC LEISHMAN':
+      case 'JUSTIN ROSE':
       case 'ADAM HADWIN':
-      case 'JOEL DAHMEN':
         //jeremy
         array_push($jeremy_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($jeremy_scores, $parsed_info[$i]['score']);
         break;
 
-      case 'PATRICK CANTLAY':
-      case 'JORDAN SPIETH':
-      case 'MATTHEW WOLFF':
-      case 'CAMERON CHAMP':
-      case 'SCOTTIE SCHEFFLER':
+      case 'RORY MCILROY':
+      case 'TIGER WOODS':
+      case 'DANIEL BERGER':
+      case 'BILLY HORSCHEL':
+      case 'IAN POULTER':
         //tony
         array_push($tony_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($tony_scores, $parsed_info[$i]['score']);
         break;
 
-      case 'JUSTIN THOMAS':
-      case 'GARY WOODLAND':
-      case 'SUNGJAE IM':
-      case 'IAN POULTER':
-      case 'SHANE LOWRY':
+      case 'DUSTIN JOHNSON':
+      case 'COLLIN MORIKAWA':
+      case 'HIDEKI MATSUYAMA':
+      case 'TONY FINAU':
+      case 'JOAQUIN NIEMANN':
         //cody
         array_push($cody_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($cody_scores, $parsed_info[$i]['score']);
         break;
 
-      case 'JON RAHM':
-      case 'VIKTOR HOVLAND':
-      case 'MATTHEW FITZPATRICK':
-      case 'BILLY HORSCHEL':
+      case 'BRYSON DECHAMBEAU':
+      case 'BROOKS KOEPKA':
+      case 'PATRICK REED':
+      case 'SERGIO GARCIA':
       case 'STEVE STRICKER':
         //ryan
         array_push($ryan_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
@@ -133,11 +133,11 @@ if ($err) {
         array_push($matt_scores, $parsed_info[$i]['score']);
         break;
 
+      case 'JUSTIN THOMAS':
+      case 'GARY WOODLAND':
       case 'XANDER SCHAUFFELE':
-      case 'JUSTIN ROSE':
-      case 'MATT KUCHAR':
-      case 'PHIL MICKELSON':
-      case 'COREY CONNERS':
+      case 'KEVIN STREELMAN':
+      case 'PAUL CASEY':
         //elliott
         array_push($elliott_results, $parsed_info[$i]['score'].' '.$parsed_info[$i]['name'].' Thru '.$parsed_info[$i]['thru']);
         array_push($elliott_scores, $parsed_info[$i]['score']);
