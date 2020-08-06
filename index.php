@@ -32,6 +32,43 @@ curl_close($curl);
 if ($err) {
   echo $err;
 } else {
+
+  // connect to mysql to get players
+  define('DB_HOST',"127.0.0.1:3306");
+  define('DB_NAME',"leaderboard");
+  define('DB_USER',"cody");
+  define('DB_PASS',"foxhat24lady");
+
+  $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+  if ($mysqli -> connect_errno) {
+    echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+    exit();
+  }
+  
+  $sql = "SELECT * FROM game_players";
+	$result = $mysqli->query($sql);
+  $num_players = $result->num_rows;
+  
+  $c = 1;
+  $new_html = '';
+  while ($row = $result->fetch_assoc()) {
+    if ($c % 2 != 0) {
+      $new_html .= '<div class="row">';
+    }
+
+    $new_html .= '<div class="card col-sm"><div class="card-body">'.$row['player_name'].'</div></div>';
+
+    if ($c % 2 == 0) {
+      $new_html .= '</div>';
+    }
+    $c++;
+  }
+
+  if ($num_players % 2 != 0) {
+    $new_html .= '</div>';
+  }
+
   $data = json_decode($response, true);
   $tourney = $data['events'][0]['name'].'<br><br>';
   $competitors = $data['events'][0]['competitions'][0]['competitors'];
@@ -52,6 +89,7 @@ if ($err) {
     array_push($parsed_info, $player_info);
 
   }
+
 
 
   $ryan_results = array('RYAN');

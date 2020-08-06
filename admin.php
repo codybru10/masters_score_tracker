@@ -36,7 +36,6 @@ class admin {
 
 		// get list of golfers
 		$golfers_html = admin::getGolfers();
-		// error_log($golfers_html);
 
 		$i = 1;
 		$players = '';
