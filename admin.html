@@ -29,17 +29,14 @@
 				$('#myInput').trigger('focus')
 			})
 			// golfer form
-	    	$('#myModal').on('shown.bs.modal', function () {
-	  			$('#myInput').trigger('focus')
+	    	$('#myGolferModal').on('shown.bs.modal', function () {
+	  			$('#myGolferInput').trigger('focus')
 			})
 
-	    	// get player id
-			$('.player-val').click(function() {
-				alert('woo');
-			});
 
 			$("#add-player").click(function(){
-				postData = {player: 'cody'};
+				var playerName = $("#player-name").val();
+				postData = {player: playerName};
 
 				$.ajax({
 					url: '<?=BASE_URL?>/admin.php?event=addPlayer',
@@ -64,7 +61,29 @@
 						location.reload();
 					}
 				});
-			})
+			});
+
+			$(".player-val").click(function(e){
+				var playerId = $(this).val();
+				console.log(playerId);
+
+				$("#player-id").val(playerId);
+			});
+
+
+			$('#add-golfer').click(function() {
+				alert('woo');
+				$.ajax({
+					url: '<?=BASE_URL?>/admin.php?event=addGolfer',
+					type: 'post',
+					data: postData,
+					success: function (response) {
+						console.log(response);
+						$('#playerModal').modal('hide');
+						location.reload();
+					}
+				});
+			});
 		});
 
 
@@ -80,12 +99,14 @@
 		<button type='button' class="btn-md btn-primary" data-toggle="modal" data-target="#playerModal">Add Player</button>
 		<button type="button" id="reset-game" class="btn-small btn-danger">Reset Game</button>
 		<br/><br>
+		
 		<?= $players ?>
-		<div class="row">
+
+		<!-- <div class="row">
 			<div class="card col-sm">
 				<div class="card-body">
 					<h6>Player 1</h6>
-					<button type="button" class="btn-small player-val">Add Golfer</button>
+					<button type="button" class="btn-small player-val" data-toggle="modal" data-target="#exampleModal">Add Golfer</button>
 				</div>
 			</div>
 			<div class="card col-sm">
@@ -123,7 +144,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 	<!-- Golfer Modal -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -142,7 +163,8 @@
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-primary">Submit</button>
+			<button type="button" class="btn btn-primary" id="add-golfer">Submit</button>
+			<input type="hidden" id="player-id"/>
 	      </div>
 	    </div>
 	  </div>

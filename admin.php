@@ -28,15 +28,38 @@ class admin {
 		$mysqli = admin::connectToDB();
 
 		$sql = "SELECT * FROM game_players";
-		$statement = $mysqli->prepare($sql);
+		// $statement = $mysqli->prepare($sql);
 		// $result = $statement->execute();
 		$result = $mysqli->query($sql);
 
-		$num_players = $result->affected_rows;
+		$num_players = $result->num_rows;
 		error_log("NUM: ".$num_players);
+		$i = 1;
+		$players = '';
 		while ($row = $result->fetch_assoc()){
 			error_log(print_r($row, true));
+			if ($i % 2 != 0) {
+				$players .= '<div class="row">';
+			}
+
+			$players .= '<div class="card col-sm">
+				<div class="card-body">
+					<h6>'.$row['player_name'].'</h6>
+					<button type="button" class="btn-small player-val" data-toggle="modal" data-target="#exampleModal" value="'.$row['player_id'].'">Add Golfer</button>
+				</div>
+			</div>';
+
+			if ($i % 2 == 0) {
+				$players .= '</div>';
+			}
+
+			$i++;
 		}
+
+		if ($num_players % 2 != 0) {
+			$players .= '</div>';
+		}
+
 		include "admin.html";
 	}
 
@@ -54,6 +77,7 @@ class admin {
 		);
 
 		$result = $statement->execute();
+		error_log('PLAYER ADDED');
 	}
 
 	function resetGame() {
@@ -69,8 +93,8 @@ class admin {
 	function connectToDB() {
 		define('DB_HOST',"127.0.0.1:3306");
 		define('DB_NAME',"leaderboard");
-		define('DB_USER',"golf");
-		define('DB_PASS',"Golf-champ-2020");
+		define('DB_USER',"cody");
+		define('DB_PASS',"foxhat24lady");
 
 		$mysqli_db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
