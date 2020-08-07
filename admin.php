@@ -159,7 +159,10 @@ class admin {
 
 		$sql = "DELETE FROM game_players";
 		$statement = $mysqli->prepare($sql);
+		$result = $statement->execute();
 
+		$sql = "DELETE FROM assigned_golfers";
+		$statement = $mysqli->prepare($sql);
 		$result = $statement->execute();
 	}
 
