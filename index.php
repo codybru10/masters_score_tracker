@@ -1,5 +1,7 @@
 <?php
 
+ini_set('display_errors', 'false');
+
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
@@ -36,8 +38,8 @@ if ($err) {
   // connect to mysql to get players
   define('DB_HOST',"127.0.0.1:3306");
   define('DB_NAME',"leaderboard");
-  define('DB_USER',"cody");
-  define('DB_PASS',"foxhat24lady");
+  define('DB_USER',"root");
+  define('DB_PASS',"Foxhat24lady!");
 
   $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 

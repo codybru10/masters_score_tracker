@@ -1,6 +1,7 @@
 <?php
 
 ini_set('error_log', '/tmp/leaderboard.log');
+ini_set('display_errors', 'false');
 
 $fnc = $_GET['event'];
 
@@ -27,7 +28,7 @@ switch ($fnc) {
 
 class admin {
 
-	function defaultRun() {
+	public static function defaultRun() {
 		$mysqli = admin::connectToDB();
 
 		$sql = "SELECT * FROM game_players";
@@ -86,7 +87,7 @@ class admin {
 		include "admin.html";
 	}
 
-	function getGolfers() {
+	public static function getGolfers() {
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
@@ -137,7 +138,7 @@ class admin {
 		return $golfers_html;
 	}
 
-	function addPlayer() {
+	public static function addPlayer() {
 		error_log('adding');
 		error_log(print_r($_POST, true));
 		$mysqli = admin::connectToDB();
@@ -153,7 +154,7 @@ class admin {
 		$result = $statement->execute();
 	}
 
-	function resetGame() {
+	public static function resetGame() {
 		error_log('reset');
 		$mysqli = admin::connectToDB();
 
@@ -166,7 +167,7 @@ class admin {
 		$result = $statement->execute();
 	}
 
-	function addGolfer() {
+	public static function addGolfer() {
 		error_log('addGolfer()');
 		error_log(print_r($_POST, true));
 
@@ -184,11 +185,11 @@ class admin {
 		$result = $statement->execute();
 	}
 
-	function connectToDB() {
+	public static function connectToDB() {
 		define('DB_HOST',"127.0.0.1:3306");
 		define('DB_NAME',"leaderboard");
-		define('DB_USER',"cody");
-		define('DB_PASS',"foxhat24lady");
+		define('DB_USER',"root");
+		define('DB_PASS',"Foxhat24lady!");
 
 		$mysqli_db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
